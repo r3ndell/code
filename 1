@@ -7,14 +7,14 @@ dX<-1
 X<-seq(X1, X2, by=dX)
 
 for (x in X) {
-     
-     if((x<0)&&(b!=0)) {
-         print(a*x^2+b)
-     } else {
-         if ((x>0)&&(b==0)) {
-             print((x-a)/(x-c))
-         } else {
-             print(x/c)
-         }
-         }
-     }
+    
+    if((x<0)&&(b!=0)) {
+        print(a*x^2+b)
+    } else {
+        if ((x>0)&&(b==0)) {
+            print((x-a)/(x-c))
+        } else {
+            print(x/c)
+        }
+    }
+}
