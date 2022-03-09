@@ -1,0 +1,20 @@
+a<-1
+b<-2
+c<-5
+X1<-1
+X2<-10
+dX<-1
+X<-seq(X1, X2, by=dX)
+
+for (x in X) {
+    
+    if((x<3)&&(b!=0)) {
+        print(a*x^2-b*x+c)
+    } else {
+        if ((x>3)&&(b==0)) {
+            print((x-a)/(x/c))
+        } else {
+            print(x/c)
+        }
+    }
+}
