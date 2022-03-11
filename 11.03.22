@@ -1,0 +1,43 @@
+get_sum<-function(a,b){
+    return(a+b)
+}
+a<-3
+b<-4
+c<-get_sum(a,b)
+c
+
+
+setwd('C:/Users/student/Downloads')
+data<-read.csv('penguins_size.csv', header=TRUE, sep = ',')
+#print(data)
+#summary(data)
+
+#data$culmen_depth_mm[5]
+#head(data)
+str(data)
+data$species<-as.factor(data$species)
+str(data)
+summary(data)
+levels(data$species)<-c(1,2,3)
+summary(data)
+data
+
+data$culmen_length_mm[data$culmen_length_mm>50]
+#is.na(data$culmen_length_mm)
+#mean(data$culmen_length_mm, na.rm=TRUE)
+data<-na.omit(data) #выкинуть данные с пропусками 
+#summary(data)
+
+#**********ОПИСАТЕЛЬНАЯ СТАТИСТИКА*****************
+mean(data$culmen_length_mm)
+median(data$culmen_length_mm)
+var(data$culmen_length_mm)
+sd(data$culmen_length_mm)
+min(data$culmen_length_mm)
+max(data$culmen_length_mm)
+#**********Гистограммы и графики*************
+hist(data$culmen_length_mm)
+hist(data$culmen_length_mm)
+plot(density(data$culmen_length_mm, bw=0.9))
+boxplot(data$culmen_length_mm)
+boxplot(data$culmen_length_mm ~ data$species)
