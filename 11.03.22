@@ -41,3 +41,6 @@ hist(data$culmen_length_mm)
 plot(density(data$culmen_length_mm, bw=0.9))
 boxplot(data$culmen_length_mm)
 boxplot(data$culmen_length_mm ~ data$species)
+
+
+#ДЗ: Выбрать числовые признаки
