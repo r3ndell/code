@@ -1,0 +1,50 @@
+setwd('C:/Users/stud/Downloads')
+data<-read.csv('penguins_size.csv', header=TRUE, sep = ',')
+summary(data)
+newdata<-na.omit(data)
+newdata$species<-as.factor(newdata$species)
+newdata$sex<-as.factor(newdata$sex)
+newdata$island<-as.factor(newdata$island)
+
+#**************Диаграммы рассеяния*****************
+pairs(~ culmen_length_mm + culmen_depth_mm + flipper_length_mm + body_mass_g, data=newdata, col=as.numeric(newdata$species))
+pairs(~ culmen_length_mm + culmen_depth_mm + flipper_length_mm + body_mass_g, data=newdata, col=as.numeric(newdata$sex))
+pairs(~ culmen_length_mm + culmen_depth_mm + flipper_length_mm + body_mass_g, data=newdata, col=as.numeric(newdata$island))
+
+#************Тест Граббса*****************
+#install.packages('outliers')
+library(outliers)
+grubbs.test(data$culmen_length_mm)
+hist(data$culmen_length_mm)
+
+#*******QQPlot******
+install.packages('car')
+library(car)
+qqPlot(newdata$culmen_length_mm)
+qqPlot(newdata$culmen_depth_mm)
+qqPlot(newdata$flipper_length_mm)
+qqPlot(newdata$body_mass_g)
+
+#************генерация**********
+v_exp<-rexp(1000, 1)
+v_unif<-runif(1000,0,1)
+v_lnorm<-rlnorm(1000,0,0.5)
+v_norm<-rnorm(1000,0,1)
+hist(v_exp)
+hist(v_unif)
+hist(v_lnorm)
+hist(v_norm)
+
+qqPlot(v_norm)
+#****тесты на нормальность****
+#Шапиро-Уилка
+shapiro.test(v_norm)
+#install.packages('nortest')
+library(nortest)
+ad.test(v_norm)
+cvm.test(v_norm)
+#**********распределение Стьюдента*******
+v_norm<-rnorm(1000,5,1)
+mean(v_norm)
+
+t.test(v_norm, mu=5)
