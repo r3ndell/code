@@ -44,7 +44,29 @@ library(nortest)
 ad.test(v_norm)
 cvm.test(v_norm)
 #**********распределение Стьюдента*******
-v_norm<-rnorm(1000,5,1)
+v_norm<-rnorm(1000,187,10)
+v_norm
 mean(v_norm)
 
-t.test(v_norm, mu=5)
+t.test(v_norm, mu=187)
+#****************
+v_norm1 <- rlnorm(1000,1,1)
+v_norm2 <- rlnorm(1000,2,1)
+mean(v_norm1)
+mean(v_norm2)
+t.test(v_norm1, v_norm2)
+t.test(v_norm1, v_norm2, var.equal=TRUE)
+#***************Критерий Уилкоксона*********
+t_c<-rcauchy(1000, 0, 2)
+#hist(t_c)
+#boxplot(t_c)
+wilcox.test(t_c, mu=0)
+t.test(t_c, mu=0)
+mean(t_c)
+
+t_c1<-rcauchy(1000,1,2)
+t_c2<-rcauchy(1000,0,2)
+mean(t_c1)
+mean(t_c2)
+wilcox.test(t_c1, t_c2, mu=1)
+t.test(t_c1, t_c2, mu=1)
