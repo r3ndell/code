@@ -70,3 +70,36 @@ mean(t_c1)
 mean(t_c2)
 wilcox.test(t_c1, t_c2, mu=1)
 t.test(t_c1, t_c2, mu=1)
+setwd("C:/Users/stud/Downloads")
+data<-read.csv(file="penguins_size (1).csv", header=TRUE,sep=",")
+newdata<-na.omit(data)
+newdata$species<-as.factor(newdata$species)
+newdata$sex<-as.factor(newdata$sex)
+summary(newdata)
+newdata$island<-as.factor(newdata$island)
+mean(newdata$culmen_length_mm)
+t.test(newdata$culmen_length_mm, mu=45)
+wilcox.test(newdata$culmen_length_mm, mu=45)
+wilcox.test(newdata$culmen_length_mm~sex, mu=0,data=newdata)
+
+males<-newdata[newdata$sex=='MALE',]
+females<-newdata[newdata$sex=='FEMALE',]
+mean(males$culmen_length_mm)
+mean(females$culmen_length_mm)
+wilcox.test(culmen_length_mm~sex, mu=-3.74,data=newdata)
+t.test(culmen_length_mm~sex, mu=-3.74,data=newdata)
+
+#******************F-критерий*************
+t_n1<-rnorm(1000,1,1)
+t_n2<-rnorm(1000,0,2)
+c<-var(t_n1)/var(t_n2)
+c
+var.test(t_n1,t_n2)
+var.test(culmen_length_mm~sex, data=newdata)
+*******************однородность дисперсии в нескольких группах* 
+  library(car)
+leveneTest(culmen_lengh_mm~species,data=newdata,center=mean)
+leveneTest(culmen_lengh_mm~species,data=newdata,center=median)
+help(leveneTest)
+partlett.test(culmen_lengh_mm~island,data=newdata)
+fligner.test(culmen_length_mm~island,data=newdata)
