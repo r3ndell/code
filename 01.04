@@ -1,0 +1,21 @@
+
+#**********Дисперсионный анализ***********
+setwd("C:/Users/teacher/Downloads")
+data_tomato<-read.csv(file="tomato.csv", header=TRUE,sep=",")
+data_tomato
+data_tomato$rtr<-as.factor(data_tomato$trt)
+
+boxplot(data_tomato$weight~data_tomato$trt)
+Means<-tapply(data_tomato$weight, data_tomato$trt, mean)
+Means
+F<-aov(weight~trt, data=data_tomato)
+summary(F)
+#***********Двухфакторный ДА*****
+install.packages("HSAUR2")
+library(HSAUR2)
+data(weightgain)
+weightgain
+boxplot(weightgain$weightgain ~ weightgain$type)
+boxplot(weightgain$weightgain ~ weightgain$source)
+F_2<-aov(weightgain$weightgain~weightgain$source+weightgain$type)
+summary(F_2)
