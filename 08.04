@@ -55,3 +55,66 @@ border: 5px solid black;}
 h1{color:red}
 h2{color:green}
 ```
+
+
+
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+```{r}
+data<-read.csv(file="C:/Users/teacher/Downloads/penguins_size.csv", header=TRUE,sep=",")
+summary(data)
+newdata<-na.omit(data)
+newdata$species<-as.factor(newdata$species)
+newdata$sex<-as.factor(newdata$sex)
+newdata$island<-as.factor(newdata$island)
+```
+
+# Page 1
+
+## Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+hist(newdata$)
+```
+
+### Chart B
+
+```{r}
+
+```
+
+## Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart C
+
+```{r}
+
+```
+
+
+### Chart D
+
+```{r}
+
+```
+
+# Page 2
+
+## Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart E
