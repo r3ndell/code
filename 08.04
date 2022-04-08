@@ -1,0 +1,44 @@
+---
+title: "lesson_6"
+output:
+  html_document: default
+  word_document: default
+date: '2022-04-08'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Заголовок первого уровня
+## Заголовок второго уровня
+### Заголовок третьего уровня
+Привет, мир!
+Получим данные и выведем их описание.
+```{r, echo=FALSE}
+data(cars)
+str(cars)
+summary(cars)
+plot(cars)
+```
+Выведем гистограмму частот и диаграмму размаха:
+```{r, echo=FALSE}
+library(DescTools)
+hist(cars$speed)
+boxplot(cars$dist)
+```
+
+# Расчет средних характеристик
+
+Средняя скорость: `r mean(cars$speed)`
+
+Среднее расстояние: `r mean(cars$dist)`
+
+Дисперсия скорости: `r var(cars$speed)`
+Доверительный интервал для среднего скорости `r MeanCI(cars$speed)`
+MeanCI(cars$speed)
+
+### Печатанье формул
+$e=mc^2$
+$V=\frac{S}{t}$
+$f(x)=\frac{1}{\sigma \sqrt{2\pi}} \cdot e^{-\frac{(x-m_x)^2}{2\sigma^2}}$
+
