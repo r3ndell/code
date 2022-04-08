@@ -71,7 +71,7 @@ library(flexdashboard)
 ```
 
 ```{r}
-data<-read.csv(file="C:/Users/teacher/Downloads/penguins_size.csv", header=TRUE,sep=",")
+data<-read.csv(file="C:/Users/stud/Downloads/penguins_size.csv", header=TRUE,sep=",")
 summary(data)
 newdata<-na.omit(data)
 newdata$species<-as.factor(newdata$species)
@@ -87,7 +87,7 @@ newdata$island<-as.factor(newdata$island)
 ### Chart A
 
 ```{r}
-hist(newdata$)
+hist(newdata$culmen_length_mm)
 ```
 
 ### Chart B
