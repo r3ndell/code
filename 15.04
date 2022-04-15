@@ -1,0 +1,36 @@
+data<-read.csv(file="C:/Users/stud/Downloads/CarPrice_Assignment.csv", header=TRUE,sep=",")
+summary(data)
+data<-na.omit(data)
+newdata<-data[, c(10,11,12,14,17,22,24,25,26)]
+summary(newdata)
+pairs(newdata)
+
+#******оценка корелляции****
+cor.test(newdata$wheelbase, newdata$price)
+cor.test(newdata$citympg, newdata$highwaympg)
+pairs(newdata, panel=panel.smooth)
+
+library(GGally)
+ggpairs(newdata, upper=list(continuous='density', combo='box'), lower=list(continous='points', combo='dot'))
+
+#******оценка регрессии****
+two_data<-newdata[,c(7,9)]
+plot(two_data)
+
+y<-two_data$price
+x<-two_data$citympg
+
+M<-lm(y~x)
+summary(M)
+
+plot(x,y,type='p', col='red')
+points(x,predict(lm(formula = y~x)), type='p', col='blue')
+
+M_3<-lm(y~x+I(x^2)+I(x^3))
+summary(M_2)
+
+#***************множественная регрессия********
+M<-lm(price~wheelbase+carlength+carwidth+horsepower, data=newdata)
+summary(M)
+Mstep<-step(M, derection='both')
+summary(Mstep)
