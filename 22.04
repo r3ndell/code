@@ -1,0 +1,46 @@
+data<-read.csv(file = "C:/Users/stud/Downloads/Fish.csv", header = TRUE)
+newdata <- na.omit(data)
+newdata$species <- as.factor(newdata$species)
+str(newdata)
+
+
+pairs(newdata)
+
+pairs(newdata,upper.panel = panel.smooth, col = newdata$Species)
+
+library(GGally)
+ggpairs(newdata,
+        upper = list(continuous = "density", combo = "box"),
+        lower = list(continuous = "points", combo = "dot"))
+
+newdata1<-newdata[newdata$Species=="1",]
+newdata1
+two_data<-newdata[ , c(3,2)]
+plot(two_data)
+y<-two_data$Weight
+x<-two_data$Length1
+
+lm.3<-lm(formula=y~x+I(x^2)+I(x^3)+I(x^4))
+summary(lm.3)
+
+plot(x, y, type="p",pch = 22, bg="yellow",
+     xlab = "Weight", ylab = "Length1")
+points(x,predict(lm(formula=y~x+I(x^2)+I(x^3)+I(x^4))),type="p", col="blue", lwd=2 )
+
+M <- lm(Species~Weight+Length1+Length2+Length3+Height+Width,
+        data=newdata)
+summary(M)
+
+Mstep <- step(M, direction="both")
+summary(Mstep)
+
+
+library(leaps)
+leaps <- regsubsets(Species~Weight+Length1+Length2+Length3+Height+Width,
+                    data=newdata,  nbest=5)
+summary(leaps)
+
+plot(leaps,scale="adjr2")
+
+library(car)
+scatterplotMatrix(~Species+Weight+Length1+Length2+Length3+Height+Width, data = newdata)
